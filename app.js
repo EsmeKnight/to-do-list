@@ -142,9 +142,12 @@ async function main() {
         res.render("about");
     });
 
-    const port = process.env.PORT || 3000;
+    let port = process.env.PORT;
+    if (port == null || port == "") {
+        port = 3000;
+    }
 
-    app.listen(port, (req, res) => {
-        console.log(`Your server is running on http://localhost:${port}`);
+    app.listen(port, function {
+        console.log(`Your server is running on ${port}`);
     });
 }
