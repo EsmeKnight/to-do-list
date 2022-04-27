@@ -4,6 +4,11 @@ import bodyParser from "body-parser";
 import date from "./date.js";
 import mongoose from "mongoose";
 import _ from "lodash";
+import { DotenvConfigOptions } from "dotenv";
+
+const server = process.env.N1_KEY;
+const serverCred = process.env.N1_SECRET;
+const mongoDB = `mongodb+srv://${server}:${serverCred}@cluster0.96mcu.mongodb.net/todolistDB`
 
 const app = express();
 const currentDate = date.date;
@@ -17,7 +22,7 @@ app.set("view engine", "ejs");
 main().catch(err => console.log(err));
 
 async function main() {
-    await mongoose.connect("mongodb+srv://me:eQ7GS53MFCb8daG@cluster0.96mcu.mongodb.net/todolistDB");
+    await mongoose.connect(mongoDB);
 
     const itemsSchema = new mongoose.Schema({
         name: {
