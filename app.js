@@ -4,11 +4,10 @@ import bodyParser from "body-parser";
 import date from "./date.js";
 import mongoose from "mongoose";
 import _ from "lodash";
-import "dotenv/config";
 
-const server = process.env.N1_KEY;
-const serverCred = process.env.N1_SECRET;
-const mongoDB = `mongodb+srv://${server}:${serverCred}@todolistcluster.rurag.mongodb.net/todolistDB?retryWrites=true&w=majority`
+// const server = process.env.N1_KEY;
+// const serverCred = process.env.N1_SECRET;
+const mongoDB = `mongodb+srv://Esme:<password>@todolistcluster.rurag.mongodb.net/todolistDB?retryWrites=true&w=majority`
 
 const app = express();
 const currentDate = date.date;
