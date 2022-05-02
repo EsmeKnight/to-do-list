@@ -4,11 +4,11 @@ import bodyParser from "body-parser";
 import date from "./date.js";
 import mongoose from "mongoose";
 import _ from "lodash";
-import { DotenvConfigOptions } from "dotenv";
+import "dotenv/config";
 
 const server = process.env.N1_KEY;
 const serverCred = process.env.N1_SECRET;
-const mongoDB = `mongodb+srv://${server}:${serverCred}@cluster0.96mcu.mongodb.net/todolistDB`
+const mongoDB = `mongodb+srv://${server}:${serverCred}@todolistcluster.rurag.mongodb.net/todolistDB?retryWrites=true&w=majority`
 
 const app = express();
 const currentDate = date.date;
@@ -90,13 +90,6 @@ async function main() {
                 console.log("Something went wrong");
             }
         })
-
-        // posts.forEach(post => {
-        //     let postName = post.postTitle.toLowerCase()
-        //     if (postSearch === postName) {
-        //         res.render("post", { title: post.postTitle, body: post.postBody })
-        //     }
-        // });
     });
 
     app.post("/", function (req, res) {
@@ -152,7 +145,7 @@ async function main() {
         port = 3000;
     }
 
-    app.listen(port, function {
+    app.listen(port, function () {
         console.log(`Your server is running on ${port}`);
     });
 }
